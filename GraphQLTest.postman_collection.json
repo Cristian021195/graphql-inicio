@@ -1,0 +1,138 @@
+{
+	"info": {
+		"_postman_id": "62610dfe-9d8a-4c77-901f-82a4f578d8ad",
+		"name": "GraphQLTest",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "17282118"
+	},
+	"item": [
+		{
+			"name": "PokemonGraphQL",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query samplePokeAPIquery {\r\n\r\n  # Gets all the pokemon belonging to generation 3\r\n  gen3_species: pokemon_v2_pokemonspecies(where: \r\n    {pokemon_v2_generation: \r\n        {name: \r\n            {_eq: \"generation-iii\"}\r\n        }\r\n    }, order_by: {id: asc}, limit:6) {\r\n    name\r\n    id\r\n  }\r\n  \r\n  # You can run multiple queries at the same time\r\n  # Counts how many pokemon were released for each generation\r\n  generations: pokemon_v2_generation {\r\n    name\r\n    pokemon_species: pokemon_v2_pokemonspecies_aggregate {\r\n      aggregate {\r\n        count\r\n      }\r\n    }\r\n  }\r\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "https://beta.pokeapi.co/graphql/v1beta",
+					"protocol": "https",
+					"host": [
+						"beta",
+						"pokeapi",
+						"co"
+					],
+					"path": [
+						"graphql",
+						"v1beta"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Persons",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query {\r\n    allPersons {\r\n        name,\r\n        city,\r\n        phone,\r\n    }\r\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "localhost:4000/",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "FindPerson",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query {\r\n    findPerson(name: \"Cristian\") {\r\n        id,\r\n        street,\r\n        phone,\r\n        address\r\n    }\r\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "localhost:4000/",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "FindPersonDireccion",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query {\r\n    findPerson(name: \"Cristian\") {\r\n        id,\r\n        direccion {\r\n            city,\r\n            street\r\n        }\r\n    }\r\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "localhost:4000/",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "NewPerson",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation {\r\n    addPerson(\r\n        name: \"Allison\"\r\n        phone: \"123-123\"\r\n        street: \"porque no usa require\"\r\n        city: \"san miguel\"\r\n    ){\r\n        name\r\n        phone\r\n        street\r\n        address\r\n        direccion {\r\n            street\r\n            city\r\n        }\r\n        city\r\n        id\r\n    }\r\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "localhost:4000/",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
